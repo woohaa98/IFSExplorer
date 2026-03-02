@@ -60,19 +60,15 @@ Rules:
 
 async function askClaude(system, userMsg) {
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || "http://localhost:5000";
+    const res = await fetch(`${apiEndpoint}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.REACT_APP_ANTHROPIC_KEY,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
         system,
-        messages: [{ role: "user", content: userMsg }],
+        userMsg,
       }),
     });
     const data = await res.json();

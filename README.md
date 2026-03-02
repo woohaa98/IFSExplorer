@@ -10,44 +10,40 @@ Built with React. AI reflections powered by the Anthropic Claude API.
 ### 1. Install dependencies
 ```bash
 npm install
+cd server && npm install
 ```
 
 ### 2. Set up the API key
-This app calls the Anthropic API directly from the browser.
-The API key is currently handled by the Claude.ai artifact environment.
-
-For production deployment, you have two options:
-
-**Option A — Environment variable (recommended)**
 Create a `.env` file in the project root:
 ```
 REACT_APP_ANTHROPIC_KEY=your_api_key_here
+REACT_APP_API_ENDPOINT=http://localhost:5000
 ```
-Then update the `askClaude` function in `src/App.jsx` to use:
-```js
-headers: {
-  "Content-Type": "application/json",
-  "x-api-key": process.env.REACT_APP_ANTHROPIC_KEY,
-  "anthropic-version": "2023-06-01",
-  "anthropic-dangerous-direct-browser-access": "true",
-}
-```
-
-**Option B — Backend proxy (most secure)**
-Create a small Express/Next.js API route that holds the key server-side
-and proxies requests to Anthropic. Recommended before public launch.
 
 ### 3. Run locally
+
+**Terminal 1 - Start the backend proxy (keeps API key secret):**
+```bash
+cd server
+npm start
+# Backend runs on http://localhost:5000
+```
+
+**Terminal 2 - Start the frontend:**
 ```bash
 npm start
+# Frontend opens at http://localhost:3000
 ```
-Opens at `http://localhost:3000`
+
+The React app will communicate through the backend proxy, so your API key is never exposed to the browser.
 
 ### 4. Build for production
 ```bash
 npm run build
 ```
 Deploy the `/build` folder to Vercel, Netlify, or any static host.
+
+For backend deployment instructions, see [SETUP_BACKEND.md](SETUP_BACKEND.md)
 
 ---
 
