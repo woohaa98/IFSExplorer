@@ -1,0 +1,5 @@
+{
+  "root": "server",
+  "buildCommand": "npm install",
+  "startCommand": "node server.js"
+}

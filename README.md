@@ -47,11 +47,15 @@ For backend deployment instructions, see [SETUP_BACKEND.md](SETUP_BACKEND.md)
 
 ---
 
-## Deploy to Vercel
-1. Push this repo to GitHub
-2. Go to vercel.com → New Project → Import repo
-3. Add environment variable `REACT_APP_ANTHROPIC_KEY` in Vercel dashboard
-4. Deploy — done
+## Deployment (Vercel + Railway)
+
+This app uses a **backend proxy** to keep your API key secure. Follow the steps in [DEPLOYMENT.md](DEPLOYMENT.md) to deploy:
+
+1. **Backend → Railway** (free tier available)
+2. **Frontend → Vercel** (free tier available)
+3. Both will auto-update whenever you push to GitHub
+
+**[→ Full Deployment Guide](DEPLOYMENT.md)**
 
 ---
 
